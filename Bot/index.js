@@ -36,7 +36,6 @@ for (const file of routeFiles) {
     const routeFile = require(`./routes/${file}`);
     
 	app.all(routeFile.route, function(req, res){
-        console.log("Checking request type");
         if(routeFile.type !== req.method){
             res.send("Wrong Request type")
             return;

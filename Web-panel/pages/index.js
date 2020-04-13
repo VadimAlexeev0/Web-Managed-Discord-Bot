@@ -20,7 +20,7 @@ class Index extends React.Component {
 
                 <ul>
                     {this.props.data.map((e) => 
-                        <li>
+                        <li key={e.id}>
                             <GuildElement element={e}/>
                             <hr />
                         </li>
@@ -35,7 +35,11 @@ class Index extends React.Component {
 class GuildElement extends React.Component {
     constructor(props){
         super(props)
+        this.state = {
+            opened: 0,
+        }
     }
+
     
     render(){
         let baseURL = this.props.element.iconURL;
@@ -51,12 +55,39 @@ class GuildElement extends React.Component {
             url = "https://via.placeholder.com/128"
         }
 
+        // Check if opened
+        if(this.state.opened == 0){
+            return(
+                <div onClick={()=> this.setState({opened: 1})}>
+                    <img src={url}/>
+                    <h3>{this.props.element.name}</h3>
+                    <h4>{this.props.element.memberCount} members</h4>
+                </div>
+            )
+        }else{
+            return(
+                <h1>Open</h1>
+            )
+        }
+    }
+}
+
+class GuildElement extends React.Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            opened: 0,
+        }
+    }
+
+    render(){
+        
+
+
         return(
-            <div>
-                <img src={url}/>
-                <h3>{this.props.element.name}</h3>
-                <h4>{this.props.element.memberCount} members</h4>
-            </div>
+            <>
+                <img />
+            </>
         )
     }
 }
